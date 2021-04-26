@@ -4,6 +4,7 @@ export class Item {
       public description: string,
       public currentbid: number,
       public remainingtime: number,
+      public buynow: number,
       public wininguser: string
 	){}
 }

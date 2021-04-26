@@ -54,7 +54,7 @@ exports.StartSocket = (io) => {
         secret: secret,
         handshake: true
     }));
-
+    console.log('Socket Started!'); 
     io.on('connection', (socket) => {  // first time it is called is when the client connects sucessfully
 
         console.log(socket.decoded_token.username, 'user connected'); // shows username in the valid token sent by client
@@ -65,7 +65,7 @@ exports.StartSocket = (io) => {
             // store client in the socketIDbyUsername map the id of the socket is obtainable in the socket object : socket.id 
             // store client in the usernamebySocketID map the username is received in the data object.  
             //you can use the .set method in the Maps
-            console.log("new user event received: ");
+            console.log("new user event received: ", data);
         });
 
 
@@ -84,7 +84,7 @@ exports.StartSocket = (io) => {
             console.log("User disconnected");
             let username = usernamebySocketID.get(socket.id); // get username from socketId in the Map
             //update user status with looged in false
-            user.updateOne({username: username}, {$set: {islogged: false}}, (err, result) => {
+           /* user.updateOne({username: username}, {$set: {islogged: false}}, (err, result) => {
                 if (err) {
                     console.error(err);
                 }
@@ -92,7 +92,7 @@ exports.StartSocket = (io) => {
                     console.log("User disconnected");
                 }
 
-            });
+            });*/
 
 
 

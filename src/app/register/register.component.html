@@ -33,7 +33,50 @@
      </div>
     </mat-toolbar>
     <main>
-      <p>register works!</p>  
+     <mat-card fxLayoutAlign="center center">
+          <form [formGroup]="userForm" (submit)="submit()">
+            <div fxLayout="column" fxFlex fxLayout.lt-sm="column" fxLayoutGap="0px">
+              <mat-form-field class="form-field" appearance="outline">
+                <mat-label> Name
+                </mat-label>
+                <input matInput formControlName="name" required>
+                <mat-error *ngIf="userForm.controls.name.touched && userForm.controls.name.invalid">
+                  <span *ngIf="userForm.controls.name.errors?.required">This field is mandatory.</span> 
+                </mat-error>
+              </mat-form-field>
+              <mat-form-field class="form-field" appearance="outline">
+                <mat-label> E-mail
+                </mat-label>
+                <input matInput formControlName="email" required>
+                <mat-error *ngIf="userForm.controls.email.touched && userForm.controls.username.invalid">
+                  <span *ngIf="userForm.controls.email.errors?.required">This field is mandatory.</span>
+                  <span *ngIf="userForm.controls.email.errors?.pattern">This field is invalid.</span> 
+                </mat-error>
+              </mat-form-field>
+              <mat-form-field class="form-field" appearance="outline">
+                <mat-label> User Name
+                </mat-label>
+                <input matInput formControlName="username" required>
+                <mat-error *ngIf="userForm.controls.username.touched && userForm.controls.username.invalid">
+                  <span *ngIf="userForm.controls.username.errors?.required">This field is mandatory.</span> 
+                </mat-error>
+              </mat-form-field>
+              <mat-form-field class="form-field" appearance="outline">
+                <mat-label> Password
+                </mat-label>
+                <input matInput formControlName="password" type="password">
+                <mat-error *ngIf="userForm.controls.password.touched && userForm.controls.password.invalid">
+                  <span *ngIf="userForm.controls.password.errors?.required">This field is mandatory.</span> 
+                </mat-error>
+              </mat-form-field>
+              <button mat-raised-button  color="primary" [disabled]="!userForm.valid" type="submit">Log In</button>
+              <button mat-raised-button color="primary" type= "button" (click)="clearForm()">Clear</button> 
+            </div> 
+          </form>    
+      </mat-card>    
+      <mat-card class="error" fxLayoutAlign="center center" *ngIf="errorMessage" >
+        {{errorMessage}}  
+      </mat-card>
     </main>
   </mat-sidenav-content>
 </mat-sidenav-container>

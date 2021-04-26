@@ -17,7 +17,8 @@ exports.Authenticate =  (req, res) =>  {
   var body = req.body;
   //if user valid 
   var token = jwt.sign(req.body, secret);
-  res.json({ username:req.body.username, token: token });   
+  res.json({ username:req.body.username, token: token }); 
+  console.log('Replied with the token: ', token);  
   //if user not valid 
   //res.status(401).send('Wrong user or password'); 
 
@@ -128,10 +129,11 @@ GET to obtain all active items in the database
 exports.GetItems = (req, res) => {
 
 // Dummy items just for example you should send the items that exist in the database
-    let item1 = new item({description:'Smartphone',currentbid:250, remainingtime:120, wininguser:'dummyuser1'}); 
-    let item2 = new item({description:'Tablet',currentbid:300, remainingtime:120, wininguser:'dummyuser2'}); 
-    let item3 = new item({description:'Computer',currentbid:120, remainingtime:120, wininguser:'dummyuser3'}); 
+    let item1 = new item({description:'Smartphone',currentbid:250, remainingtime:120, buynow:1000, wininguser:'dummyuser1'}); 
+    let item2 = new item({description:'Tablet',currentbid:300, remainingtime:120, buynow:940, wininguser:'dummyuser2'}); 
+    let item3 = new item({description:'Computer',currentbid:120, remainingtime:120, buynow:880, wininguser:'dummyuser3'}); 
     let Items = [item1,item2,item3];
     res.json(Items); //send array of existing active items in JSON notation
+    console.log ("received get Items call responded with: ", Items);
 };
 

@@ -1,17 +1,5 @@
 <mat-sidenav-container>
   <mat-sidenav  #sidenav role="navigation">
-   <mat-nav-list>
-    <a mat-list-item
-        routerLink="/auction">
-      <mat-icon class="icon">dashboard</mat-icon>
-        <span class="label">Auction</span>
-    </a>
-    <a  mat-list-item
-        type="button">
-      <mat-icon class="icon">input</mat-icon>
-      <span class="label">LogOut</span>
-    </a>
-    </mat-nav-list>
   </mat-sidenav>
   <mat-sidenav-content>
     <mat-toolbar color="primary">
@@ -26,12 +14,12 @@
        </a>
      </div>
      <div fxFlex fxLayout fxLayoutAlign="flex-end"  fxHide.xs>
-        <ul fxLayout fxLayoutGap="20px" class="navigation-items">
+        <ul fxLayout fxLayoutGap="10px" class="navigation-items">
             <li>
                 <a
                   routerLink="/auction">
                     <mat-icon class="icon">dashboard</mat-icon>
-                    <span class="label">Dashboard</span>
+                    <span class="label">auction</span>
                 </a>
               </li>
             <li>
@@ -44,7 +32,51 @@
      </div>
     </mat-toolbar>
     <main>  
-	<p>insertitem works!</p>
+	    <mat-card fxLayoutAlign="center center">
+          <form [formGroup]="itemForm" (submit)="submit()">
+            <div fxLayout="column" fxFlex fxLayout.lt-sm="column" fxLayoutGap="0px">
+              <mat-form-field class="form-field" appearance="outline">
+                <mat-label> Description
+                </mat-label>
+                <input matInput formControlName="description" required>
+                <mat-error *ngIf="itemForm.controls.description.touched && itemForm.controls.description.invalid">
+                  <span *ngIf="itemForm.controls.description.errors?.required">This field is mandatory.</span> 
+                </mat-error>
+              </mat-form-field>
+              <mat-form-field class="form-field" appearance="outline">
+                <mat-label> Starting bid value
+                </mat-label>
+                <input matInput formControlName="currentbid" required>
+                <mat-error *ngIf="itemForm.controls.currentbid.touched && itemForm.controls.username.invalid">
+                  <span *ngIf="itemForm.controls.currentbid.errors?.required">This field is mandatory.</span>
+                  <span *ngIf="itemForm.controls.currentbid.errors?.pattern">This must be a positive number.</span> 
+                </mat-error>
+              </mat-form-field>
+              <mat-form-field class="form-field" appearance="outline">
+                <mat-label> Buy now Value
+                </mat-label>
+                <input matInput formControlName="buynow" required>
+                <mat-error *ngIf="itemForm.controls.buynow.touched && itemForm.controls.buynow.invalid">
+                  <span *ngIf="itemForm.controls.buynow.errors?.required">This field is mandatory.</span> 
+                   <span *ngIf="itemForm.controls.buynow.errors?.pattern">This must be a positive number.</span> 
+                </mat-error>
+              </mat-form-field>
+              <mat-form-field class="form-field" appearance="outline">
+                <mat-label> Duration (in seconds)
+                </mat-label>
+                <input matInput formControlName="remainingtime" required>
+                <mat-error *ngIf="itemForm.controls.remainingtime.touched && itemForm.controls.remainingtime.invalid">
+                  <span *ngIf="itemForm.controls.remainingtime.errors?.required">This field is mandatory.</span> 
+                </mat-error>
+              </mat-form-field>
+              <button mat-raised-button  color="primary" [disabled]="!itemForm.valid" type="submit">Insert Item</button>
+              <button mat-raised-button color="primary" type= "button" (click)="clearForm()">Clear</button>
+            </div> 
+          </form>    
+      </mat-card>    
+      <mat-card class="error" fxLayoutAlign="center center" *ngIf="errorMessage" >
+        {{errorMessage}}  
+      </mat-card>
     </main>
   </mat-sidenav-content>
 </mat-sidenav-container>

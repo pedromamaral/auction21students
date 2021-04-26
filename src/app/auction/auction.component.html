@@ -1,1 +1,103 @@
-<p>auction works!</p>
+<mat-sidenav-container>
+  <mat-sidenav  #sidenav role="navigation">
+  </mat-sidenav>
+  <mat-sidenav-content>
+    <mat-toolbar color="primary">
+     <div fxHide.gt-xs>
+       <button mat-icon-button (click)="sidenav.toggle()">
+        <mat-icon>menu</mat-icon>
+      </button>
+    </div>
+     <div>
+       <a routerLink="/">
+          Auction RIT II 21
+       </a>
+     </div>
+     <div fxFlex fxLayout fxLayoutAlign="flex-end"  fxHide.xs>
+        <ul fxLayout fxLayoutGap="10px" class="navigation-items">
+            <li>
+                <a
+                  routerLink="/insertitem">
+                    <mat-icon class="icon" (click)="logout()" >fiber_new</mat-icon>
+                    <span class="label">New Item</span>
+                </a>
+              </li>
+            <li>
+                <a>
+                  <mat-icon class="icon" (click)="logout()" >input</mat-icon>
+                  <span class="label">LogOut</span>
+                 </a>
+            </li>
+        </ul>
+     </div>
+    </mat-toolbar>
+    <main>
+    	<mat-card fxLayout="column" fxLayoutAlign="space-between stretch">
+          <mat-table [dataSource]="items">
+          	<!-- Description Column -->
+  			<ng-container matColumnDef="description">
+   			  <mat-header-cell *matHeaderCellDef>Description</mat-header-cell>
+    		  <mat-cell *matCellDef="let item"> {{item.description}} </mat-cell>
+  			</ng-container>
+
+  			<!-- Current Bid Column -->
+  			<ng-container matColumnDef="currentbid">
+  			  <mat-header-cell *matHeaderCellDef>Current bid</mat-header-cell>
+  			  <mat-cell *matCellDef="let item">{{item.currentbid}}</mat-cell>	
+  			</ng-container>
+
+  			<!-- buy bow Column -->
+  			<ng-container matColumnDef="buynow">
+  			 <mat-header-cell *matHeaderCellDef>Buy Now</mat-header-cell>
+  			 <mat-cell *matCellDef="let item">{{item.buynow}}</mat-cell>	
+  			</ng-container>
+
+  			<!-- Remaining time Column -->
+ 			<ng-container matColumnDef="remainingtime">
+ 			  <mat-header-cell *matHeaderCellDef>Remaining Time</mat-header-cell>
+  			  <mat-cell *matCellDef="let item">{{item.remainingtime}}</mat-cell>		
+  			</ng-container>
+
+  			<!-- Wining user Column -->
+  			<ng-container matColumnDef="wininguser">
+  			 <mat-header-cell *matHeaderCellDef>Wining User</mat-header-cell>
+  			 <mat-cell *matCellDef="let item">{{item.wininguser}}</mat-cell>	 
+  			</ng-container>
+
+  			<mat-header-row *matHeaderRowDef="displayedColumns"></mat-header-row>
+    		<mat-row *matRowDef="let row; columns: displayedColumns" (click)="onRowClicked(row)"></mat-row>
+          </mat-table>	
+        <!-----End of table -->  
+        </mat-card>  
+	    <mat-card fxLayoutAlign="center center" *ngIf="showBid">
+          <form [formGroup]="bidForm" (submit)="submit()">
+            <div fxLayout="column" fxFlex fxLayout.lt-sm="column" fxLayoutGap="5px">
+              <mat-form-field class="form-field" appearance="outline">
+                <mat-label> Place Bid for {{selectedItem.description}}
+                </mat-label>
+                <input matInput formControlName="bid" required>
+                <mat-error *ngIf="bidForm.controls.bid.touched && bidForm.controls.bid.invalid">
+                  <span *ngIf="bidForm.controls.bid.errors?.required">This field is mandatory.</span> 
+                  <span *ngIf="bidForm.controls.bid.errors?.pattern">This must be a positive number.</span> 
+                </mat-error>
+              </mat-form-field>
+              <button mat-raised-button  color="primary" [disabled]="!bidForm.valid" type="submit">Submit Bid</button>
+              <button mat-raised-button color="primary" type= "button" (click)="cancelBid()">Cancel</button>
+              <button mat-raised-button color="primary" type= "button" (click)="buyNow()">Buy Now</button>
+            </div> 
+          </form>    
+      </mat-card> 
+      <!-- Message Card -->
+      <mat-card fxLayoutAlign="center center">
+           <p >
+             {{message}}
+           </p>  
+      </mat-card> 
+      <!-- Error Card -->  
+      <mat-card class="error" fxLayoutAlign="center center" *ngIf="errorMessage" >
+        {{errorMessage}}  
+      </mat-card>
+    </main>
+  </mat-sidenav-content>
+</mat-sidenav-container>
+

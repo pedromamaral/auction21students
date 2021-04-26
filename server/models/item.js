@@ -5,6 +5,7 @@ var ItemSchema = new Schema({
     description: String,  
     currentbid: Number,
     remainingtime: Number,
+    buynow: Number,
     wininguser: String,    
     sold: Boolean
     //createdAt: { type: Date, 'default': Date.now } //stores date of record creation

@@ -1,5 +1,6 @@
 import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
+import { HttpClientModule} from '@angular/common/http';
 //import Routing module
 import { AppRoutingModule } from './app-routing.module';
 //import SocketIoModule 
@@ -18,7 +19,7 @@ import { InsertitemComponent } from './insertitem/insertitem.component';
 import { RegisterComponent } from './register/register.component';
 import { SigninComponent } from './signin/signin.component';
 import { AuthGuard } from './auth.guard';
-import { SocketService } from './socket.service';
+import {SocketService} from './socket.service';
 import {SigninService} from './signin.service';
 import {AuctionService} from './auction.service';
 import {RegisterService} from './register.service';
@@ -40,6 +41,7 @@ const config: SocketIoConfig = { url: window.location.origin, options: {autoConn
   imports: [
     BrowserModule,
     AppRoutingModule,
+    HttpClientModule,
     ReactiveFormsModule,
     FlexLayoutModule,
     BrowserAnimationsModule,
@@ -52,7 +54,8 @@ const config: SocketIoConfig = { url: window.location.origin, options: {autoConn
      SocketService,
      AuctionService,
      RegisterService,
-     InsertitemService
+     InsertitemService,
+     AuthGuard
   ],
   bootstrap: [AppComponent]
 })

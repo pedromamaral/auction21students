@@ -16,6 +16,10 @@ a:active {
   color: lightgray;
 }
 
+.error{
+  color: red;
+}
+
 .navigation-items {
   list-style: none;
   padding: 0;
@@ -37,5 +41,6 @@ a:active {
   display: inline-block;
   line-height: 30px;
   margin: 5;
+  padding-left:10px;
   width: 85%;
 }
