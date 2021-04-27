@@ -23,7 +23,7 @@ export class InsertitemComponent implements OnInit {
       description: ['', Validators.compose([Validators.required])],
       currentbid: ['', Validators.compose([Validators.required,Validators.pattern("^[0-9]*$")])],
       buynow: ['', Validators.compose([Validators.required,Validators.pattern("^[0-9]*$")])],
-      remainingtime: ['', Validators.compose([Validators.required])]
+      remainingtime: ['', Validators.compose([Validators.required,Validators.pattern("^[0-9]*$")])]
   	 });
   }
 

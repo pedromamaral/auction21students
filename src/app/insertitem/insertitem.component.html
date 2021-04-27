@@ -31,7 +31,7 @@
         </ul>
      </div>
     </mat-toolbar>
-    <main>  
+    <main>
 	    <mat-card fxLayoutAlign="center center">
           <form [formGroup]="itemForm" (submit)="submit()">
             <div fxLayout="column" fxFlex fxLayout.lt-sm="column" fxLayoutGap="0px">
@@ -40,16 +40,16 @@
                 </mat-label>
                 <input matInput formControlName="description" required>
                 <mat-error *ngIf="itemForm.controls.description.touched && itemForm.controls.description.invalid">
-                  <span *ngIf="itemForm.controls.description.errors?.required">This field is mandatory.</span> 
+                  <span *ngIf="itemForm.controls.description.errors?.required">This field is mandatory.</span>
                 </mat-error>
               </mat-form-field>
               <mat-form-field class="form-field" appearance="outline">
                 <mat-label> Starting bid value
                 </mat-label>
                 <input matInput formControlName="currentbid" required>
-                <mat-error *ngIf="itemForm.controls.currentbid.touched && itemForm.controls.username.invalid">
+                <mat-error *ngIf="itemForm.controls.currentbid.touched && itemForm.controls.currentbid.invalid">
                   <span *ngIf="itemForm.controls.currentbid.errors?.required">This field is mandatory.</span>
-                  <span *ngIf="itemForm.controls.currentbid.errors?.pattern">This must be a positive number.</span> 
+                  <span *ngIf="itemForm.controls.currentbid.errors?.pattern">This must be a positive number.</span>
                 </mat-error>
               </mat-form-field>
               <mat-form-field class="form-field" appearance="outline">
@@ -57,8 +57,8 @@
                 </mat-label>
                 <input matInput formControlName="buynow" required>
                 <mat-error *ngIf="itemForm.controls.buynow.touched && itemForm.controls.buynow.invalid">
-                  <span *ngIf="itemForm.controls.buynow.errors?.required">This field is mandatory.</span> 
-                   <span *ngIf="itemForm.controls.buynow.errors?.pattern">This must be a positive number.</span> 
+                   <span *ngIf="itemForm.controls.buynow.errors?.required">This field is mandatory.</span>
+                   <span *ngIf="itemForm.controls.buynow.errors?.pattern">This must be a positive number.</span>
                 </mat-error>
               </mat-form-field>
               <mat-form-field class="form-field" appearance="outline">
@@ -66,16 +66,17 @@
                 </mat-label>
                 <input matInput formControlName="remainingtime" required>
                 <mat-error *ngIf="itemForm.controls.remainingtime.touched && itemForm.controls.remainingtime.invalid">
-                  <span *ngIf="itemForm.controls.remainingtime.errors?.required">This field is mandatory.</span> 
+                  <span *ngIf="itemForm.controls.remainingtime.errors?.required">This field is mandatory.</span>
+                  <span *ngIf="itemForm.controls.remainingtime.errors?.pattern">This must be a positive number.</span>
                 </mat-error>
               </mat-form-field>
               <button mat-raised-button  color="primary" [disabled]="!itemForm.valid" type="submit">Insert Item</button>
               <button mat-raised-button color="primary" type= "button" (click)="clearForm()">Clear</button>
-            </div> 
-          </form>    
-      </mat-card>    
+            </div>
+          </form>
+      </mat-card>
       <mat-card class="error" fxLayoutAlign="center center" *ngIf="errorMessage" >
-        {{errorMessage}}  
+        {{errorMessage}}
       </mat-card>
     </main>
   </mat-sidenav-content>
