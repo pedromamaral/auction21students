@@ -21,6 +21,7 @@ export class AuctionComponent implements OnInit {
   bidForm! : FormGroup; //FormGroup for the biding 
   userName!: string;
   errorMessage: string; //string to store error messages received in the interaction with the api
+  mapOptions: google.maps.MapOptions;
 
   constructor( private formBuilder: FormBuilder, private router: Router, private socketservice: SocketService, private auctionservice: AuctionService,
    private signinservice: SigninService) { 
@@ -30,6 +31,10 @@ export class AuctionComponent implements OnInit {
     this.userName = this.signinservice.token.username;  
     this.errorMessage = "";
     this.displayedColumns = ['description', 'currentbid', 'buynow', 'remainingtime', 'wininguser'];
+    this.mapOptions = {
+    	center: { lat: 38.640026, lng: -9.155379 },
+        zoom: 14
+    };
   }
 
   ngOnInit(): void {

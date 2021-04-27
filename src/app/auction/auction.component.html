@@ -69,8 +69,8 @@
           </mat-table>	
         <!-----End of table -->  
         </mat-card>  
-	    <mat-card fxLayoutAlign="center center" *ngIf="showBid">
-          <form [formGroup]="bidForm" (submit)="submit()">
+	    <mat-card fxLayoutAlign="center center">
+          <form [formGroup]="bidForm" (submit)="submit()" *ngIf="showBid">
             <div fxLayout="column" fxFlex fxLayout.lt-sm="column" fxLayoutGap="5px">
               <mat-form-field class="form-field" appearance="outline">
                 <mat-label> Place Bid for {{selectedItem.description}}
@@ -85,7 +85,10 @@
               <button mat-raised-button color="primary" type= "button" (click)="cancelBid()">Cancel</button>
               <button mat-raised-button color="primary" type= "button" (click)="buyNow()">Buy Now</button>
             </div> 
-          </form>    
+          </form>   
+          <mat-card>
+  			 <google-map [width]=350 [height]=250 [options]="mapOptions"></google-map>
+		  </mat-card> 
       </mat-card> 
       <!-- Message Card -->
       <mat-card fxLayoutAlign="center center">
