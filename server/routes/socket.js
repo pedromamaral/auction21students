@@ -21,7 +21,7 @@ var IntervalId = setInterval(function () {
      ioSocket.to(id).emit('sold:item', {  // send a sold event for each item
      //fill with object to send in JSON
      });*/
-//update itmes
+//update times
 }, 1000); // 1000 miliseconds is the interval time 
 
 
@@ -41,7 +41,7 @@ exports.NewItemBroadcast = function (newItem) {
 
         for (var socketID of socketIDbyUsername.values()) { // for all clients call the emit method for each socket id to send the new:item method
             ioSocket.to(socketID).emit('new:item', itemtoSend);
-        }
+        }   
     }
 }
 

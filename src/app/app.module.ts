@@ -3,13 +3,13 @@ import { NgModule } from '@angular/core';
 import { HttpClientModule} from '@angular/common/http';
 //import Routing module
 import { AppRoutingModule } from './app-routing.module';
-//import SocketIoModule 
+//import SocketIoModule
 import { SocketIoModule, SocketIoConfig } from 'ngx-socket-io';
 
 import { AppComponent } from './app.component';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import {MaterialModule}  from './material/material.module'
-//import Google maps Module 
+//import Google maps Module
 import { GoogleMapsModule } from '@angular/google-maps'
 import {FlexLayoutModule} from '@angular/flex-layout';
 import { ReactiveFormsModule } from '@angular/forms';
@@ -25,8 +25,6 @@ import {AuctionService} from './auction.service';
 import {RegisterService} from './register.service';
 import {InsertitemService} from './insertitem.service';
 
-                             //the socket cannot start at bootstrap since the jwt token is still not available
-//const config: SocketIoConfig = { url: 'https://localhost:3000', options: {autoConnect : false} };
 const config: SocketIoConfig = { url: window.location.origin, options: {autoConnect : false} };
 
 

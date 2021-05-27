@@ -31,6 +31,7 @@ export class SigninService {
 // store token object in the service for other services to use when authentication is needed. 
   setToken (token: Token): void {
     this.token.username= token.username;
+    this.token.token= token.token;
     localStorage.setItem('currentUser', JSON.stringify({username: token.username, token:token.token}));
 
   }

@@ -77,7 +77,7 @@ export class AuctionComponent implements OnInit {
   }
 
    logout(){
-  	//perform any needed logout logic here 
+  	//
   	this.socketservice.disconnect();
     //navigate back to the log in page
     this.router.navigate(['/signin']);
